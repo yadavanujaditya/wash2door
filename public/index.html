@@ -333,6 +333,32 @@
   <p class="foot-copy">© <span id="yr"></span> Wash Wala. Made in Rishikesh.</p>
 </footer>
 
+<div class="wa" id="wa">
+  <section class="wa-card" id="wa-card" role="dialog" aria-labelledby="wa-title" hidden>
+    <header class="wa-head">
+      <span class="wa-avatar"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3C13 12 8 18 8 25a12 12 0 0 0 24 0C32 18 27 12 20 3Z" fill="currentColor"/><path d="M11 26c3-3 6-3 9 0s6 3 9 0" fill="none" stroke="var(--night)" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+      <div><h2 id="wa-title">Wash Wala</h2><p><i class="wa-dot"></i><span id="wa-hours" data-i18n="wa.status">Replies on WhatsApp</span></p></div>
+      <button class="wa-x" id="wa-close" type="button" aria-label="Close chat">×</button>
+    </header>
+    <div class="wa-body">
+      <p class="wa-bubble" data-i18n="wa.hello">Namaste. How can we help you today?</p>
+      <div class="wa-opts" id="wa-opts">
+        <button type="button" data-msg="Hello Wash Wala, I would like to book a laundry pickup." data-i18n="wa.o1">Book a pickup</button>
+        <button type="button" data-msg="Hello Wash Wala, can you share your price list?" data-i18n="wa.o2">Ask about prices</button>
+        <button type="button" data-msg="Hello Wash Wala, I want to check the status of my order." data-i18n="wa.o3">Check my order</button>
+        <button type="button" data-msg="Hello Wash Wala, I run a stay / camp / hostel in Rishikesh and want a partner rate." data-i18n="wa.o4">Partner rate for stays</button>
+      </div>
+    </div>
+    <footer class="wa-foot"><a class="wa-go" id="wa-go" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#ic-wa"/></svg><span data-i18n="wa.go">Start chat on WhatsApp</span></a></footer>
+  </section>
+  <button class="wa-fab" id="wa-fab" type="button" aria-expanded="false" aria-controls="wa-card" aria-label="Chat with us on WhatsApp">
+    <span class="wa-ring" aria-hidden="true"></span>
+    <svg viewBox="0 0 32 32" aria-hidden="true"><use href="#ic-wa"/></svg>
+    <span class="wa-label" data-i18n="wa.label">Chat with us</span>
+  </button>
+</div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="ic-wa" viewBox="0 0 32 32"><path fill="currentColor" d="M16.04 3C9.4 3 4 8.38 4 15.02c0 2.12.56 4.19 1.61 6.01L4 28l7.15-1.87a12.02 12.02 0 0 0 4.89 1.03h.01C22.7 27.16 28 21.78 28 15.14 28 8.5 22.68 3 16.04 3Zm0 21.95h-.01a9.95 9.95 0 0 1-5.08-1.39l-.36-.22-3.77.98 1.01-3.67-.24-.38a9.9 9.9 0 0 1-1.52-5.25c0-5.5 4.48-9.97 9.99-9.97 2.67 0 5.18 1.04 7.06 2.93a9.9 9.9 0 0 1 2.92 7.05c0 5.5-4.48 9.92-9.99 9.92Zm5.47-7.46c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.67-2.08-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"/></symbol></svg>
+
 <nav class="dock" aria-label="Quick actions">
   <a class="dock-book" href="#book" data-i18n="nav.book">Book pickup</a>
   <a data-wa="Hello Wash Wala, I would like to book a laundry pickup." href="#" target="_blank" rel="noopener">WhatsApp</a>

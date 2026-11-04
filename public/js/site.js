@@ -31,6 +31,7 @@
     'stays.p': 'योग स्कूल, राफ्टिंग कैंप और हॉस्टल के लिए तय साप्ताहिक पिकअप, कमरे के हिसाब से टैग वाले बैग और महीने में एक बिल। कितने मेहमान हैं बताइए, हम रेट भेजेंगे।',
     'stays.cta': 'पार्टनर रेट पूछें',
     'areas.eyebrow': 'हम कहाँ आते हैं', 'areas.title': 'अपनी गली खोजिए', 'areas.q': 'अपना होटल, घाट या इलाका लिखिए',
+    'wa.status': 'WhatsApp पर जवाब', 'wa.hello': 'नमस्ते। हम आपकी क्या मदद कर सकते हैं?', 'wa.o1': 'पिकअप बुक करें', 'wa.o2': 'दाम पूछें', 'wa.o3': 'अपना ऑर्डर देखें', 'wa.o4': 'होटल/कैंप के लिए पार्टनर रेट', 'wa.go': 'WhatsApp पर चैट शुरू करें', 'wa.label': 'हमसे बात करें',
     'faq.eyebrow': 'काम की बातें', 'faq.title': 'अक्सर पूछे जाने वाले सवाल',
   };
   function t(key, fallback) { return lang === 'hi' && HI[key] ? HI[key] : fallback; }
@@ -348,6 +349,28 @@
     $('#svc-note').textContent = 'Minimum order ' + money(cfg.minOrder) + '. Pickup and delivery are free from ' + money(cfg.freePickupAbove) + ', otherwise ' + money(cfg.pickupFee) + '. Express adds ' + cfg.expressPct + '%.';
   }
 
+  // ---------- WhatsApp chat widget ----------
+  var waBox = $('#wa'), waCard = $('#wa-card'), waFab = $('#wa-fab'), waMsg = 'Hello Wash Wala, I would like to book a laundry pickup.';
+  function waSet(open) {
+    waCard.hidden = !open; waFab.setAttribute('aria-expanded', open ? 'true' : 'false'); waBox.classList.remove('peek');
+    if (open) $('#wa-go').focus({ preventScroll: true });
+  }
+  function waRefresh() { if (cfg) $('#wa-go').href = waUrl(waMsg); }
+  waFab.addEventListener('click', function () { waSet(waCard.hidden); });
+  $('#wa-close').addEventListener('click', function () { waSet(false); waFab.focus(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !waCard.hidden) { waSet(false); waFab.focus(); } });
+  document.addEventListener('click', function (e) { if (!waCard.hidden && !waBox.contains(e.target)) waSet(false); });
+  $('#wa-opts').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-msg]'); if (!b) return;
+    $$('button', $('#wa-opts')).forEach(function (x) { x.classList.toggle('sel', x === b); });
+    waMsg = b.dataset.msg; waRefresh();
+    if (cfg) window.open(waUrl(waMsg), '_blank', 'noopener');
+  });
+  var seen = false; try { seen = sessionStorage.getItem('ww_wa_peek') === '1'; } catch (e) { /* ignore */ }
+  if (!seen && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setTimeout(function () { if (waCard.hidden) { waBox.classList.add('peek'); try { sessionStorage.setItem('ww_wa_peek', '1'); } catch (e) { /* ignore */ } setTimeout(function () { waBox.classList.remove('peek'); }, 5000); } }, 4500);
+  }
+
   function init(c) {
     cfg = c;
     $$('[data-wa]').forEach(function (a) { a.href = waUrl(a.dataset.wa); });
@@ -358,6 +381,7 @@
     $('#f-hours').textContent = b.hours; $('#f-addr').textContent = b.address;
     $('#express-note').textContent = '+' + cfg.expressPct + '% on the order';
     $('#t-free').textContent = 'Free';
+    $('#wa-hours').dataset.en = 'Replies on WhatsApp · ' + b.hours; waRefresh();
     fillSelects(); renderServices(); renderAreas(); renderLines(); renderSummary(); applyLang();
   }
 
