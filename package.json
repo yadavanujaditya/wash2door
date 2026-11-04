@@ -1,0 +1,14 @@
+{
+  "name": "wash-wala",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Wash Wala, laundry pickup and delivery in Rishikesh. Public website plus admin backend for orders, sales and cash.",
+  "main": "server/index.js",
+  "engines": { "node": ">=22.5" },
+  "scripts": {
+    "start": "node --no-warnings server/index.js",
+    "seed": "node --no-warnings server/seed.js",
+    "test": "node --no-warnings --test test/*.test.js"
+  },
+  "license": "UNLICENSED"
+}
